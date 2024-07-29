@@ -37,6 +37,7 @@ public class RemedioEntity {
     this.quantidade = dados.quantidade();
     this.dataValidade = dados.dataValidade();
     this.laboratorio = dados.laboratorio();
+    this.ativo = true;
 }
 
   @Id
@@ -54,6 +55,8 @@ public class RemedioEntity {
   @Enumerated(EnumType.STRING)
   private Laboratorio laboratorio;
 
+  private Boolean ativo;
+
   public void atualizarInformacoes(DadosAtualizarRemedioDTO dados){
 
     if(dados.nome() != null){
@@ -69,6 +72,14 @@ public class RemedioEntity {
     }
 
 
+  }
+
+  public void inativar(){
+    this.ativo = false;
+  }
+
+  public void ativar(){
+    this.ativo = true;
   }
 
 }
