@@ -1,7 +1,9 @@
 package com.api.remedios.module;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
+import com.api.remedios.dto.DadosAtualizarRemedioDTO;
 import com.api.remedios.dto.DadosCadastroRemedioDTO;
 import com.api.remedios.enums.Laboratorio;
 import com.api.remedios.enums.Via;
@@ -46,12 +48,27 @@ public class RemedioEntity {
   private Via via;
 
   private String lote;
-  private String quantidade;
-  private String dataValidade;
+  private int quantidade;
+  private LocalDate dataValidade;
 
   @Enumerated(EnumType.STRING)
   private Laboratorio laboratorio;
 
+  public void atualizarInformacoes(DadosAtualizarRemedioDTO dados){
 
+    if(dados.nome() != null){
+      this.nome = dados.nome();
+    }
+
+    if(dados.via() != null){
+      this.via = dados.via();
+    }
+
+    if(dados.laboratorio() != null){
+      this.laboratorio = dados.laboratorio();
+    }
+
+
+  }
 
 }
