@@ -54,9 +54,9 @@ public class RemedioController {
   }
 
   @GetMapping ("/{id}")
-  public ResponseEntity<List<DadosListagemRemedioDTO>> listarPorId(@PathVariable UUID id) {
-    var remedio = remediosRepositories.findById(id).stream().map(DadosListagemRemedioDTO::new).toList();
-    return ResponseEntity.ok(remedio);
+  public ResponseEntity<DadosListagemRemedioDTO> listarPorId(@PathVariable UUID id) {
+    var remedio = remediosRepositories.getReferenceById(id);
+    return ResponseEntity.ok(new DadosListagemRemedioDTO(remedio));
   }
 
   @PutMapping
