@@ -9,7 +9,7 @@ import com.api.remedios.dto.DadosCadastroRemedioDTO;
 import com.api.remedios.dto.DadosDetalhamentoRemedioDTO;
 import com.api.remedios.dto.DadosListagemRemedioDTO;
 import com.api.remedios.module.RemedioEntity;
-import com.api.remedios.repository.RemediosRepositories;
+import com.api.remedios.repository.RemediosRepository;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -31,7 +31,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class RemedioController {
 
   @Autowired
-  private RemediosRepositories remediosRepositories;
+  private RemediosRepository remediosRepositories;
 
   @PostMapping
   @Transactional
