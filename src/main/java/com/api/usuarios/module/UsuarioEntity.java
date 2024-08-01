@@ -1,6 +1,12 @@
 package com.api.usuarios.module;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,7 +24,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 @Data
-public class UsuarioEntity {
+public class UsuarioEntity implements UserDetails {
   
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
@@ -26,5 +32,19 @@ public class UsuarioEntity {
 
   private String login;
   private String password;
+
+
+  @Override
+  public Collection<? extends GrantedAuthority> getAuthorities() {
+    return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+  }
+  @Override
+  public String getUsername() {
+    return login;
+  }
+  @Override
+  public String getPassword() {
+    return password;
+  }
 
 }
